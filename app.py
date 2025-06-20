@@ -40,8 +40,10 @@ def perguntar(p: Pergunta):
 
     for item in base:
         score = cosine_similarity(embedding_pergunta, item["embedding"])
+        print(f"Score: {score:.4f} - Conteúdo: {item['conteudo'][:60]}...")
         if score > melhor_score:
             melhor_score = score
-            melhor_resposta = item["resposta"]
+            melhor_resposta = item["conteudo"]
 
+    print(f">>> Melhor score: {melhor_score:.4f}")
     return {"resposta": melhor_resposta}
